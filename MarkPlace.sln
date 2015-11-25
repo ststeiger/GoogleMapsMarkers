@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkPlace", "MarkPlace\Mark
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BD966B08-C40E-46C9-9CD7-B9592270ACFC}"
 	ProjectSection(SolutionItems) = preProject
-		MarkPlace\ReadMe.md = MarkPlace\ReadMe.md
+		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
 Global
