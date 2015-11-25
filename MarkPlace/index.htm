@@ -26,23 +26,26 @@
 
     <script type="text/javascript">
 
+        // Pilatus Flugzeugwerke AG 
         var Pilatus = [
-  ['Stans, CH', 46.97413, 8.380424, 4] // Pilatus Flugzeugwerke AG, 6370 Stans, Switzerland
+            ['Stans, CH', 46.97413, 8.380424, 4] // Pilatus Flugzeugwerke AG, 6370 Stans, Switzerland
         ];
 
 
+        // AgustaWestland S.p.A. 
         var AgustaWestland = [
-  ['Varese', 45.71841, 8.694658, 4], // AgustaWestland S.p.A., Via Roma, 51B, Vergiate VA, Italy
-  ['Swidnik, Polen', 51.22803, 22.70015, 5] // PZL-Świdnik S.A. Wytwórnia sprzętu komunikacyjnego, aleja Lotników Polskich 1, Świdnik, Poland
+            ['Varese', 45.71841, 8.694658, 4], // AgustaWestland S.p.A., Via Roma, 51B, Vergiate VA, Italy
+            ['Swidnik, Polen', 51.22803, 22.70015, 5] // PZL-Świdnik S.A. Wytwórnia sprzętu komunikacyjnego, aleja Lotników Polskich 1, Świdnik, Poland
         ];
 
 
+        // Airbus Helicopters / Eurocopter Group / Eurocopter Deutschland GmbH 
         var AirbusHelicopters = [
-  ['Marignane, F', 43.43662, 5.232663, 4], // Airbus Helicopters, Aeroport International Marseille Provence, 13700 Marignane, France
-  ['Donauwörth, DE', 48.70899, 10.77385, 5], // Airbus Helicopters Deutschland GmbH, Industriestraße 4, 86609 Donauwörth, Germany
-  ['Kassel, DE', 51.40943, 9.396586, 3], // Eurocopter Deutschland GmbH, Flugplatzstraße 6, 34379 Calden, Germany, Permanently Closed
-  ['La Courneuve, F (Paris)', 48.92738, 2.398596, 2], // Airbus helicopters, 2-20 Avenue Marcel Cachin, 93120 La Courneuve, France
-  ['Brasov, Rumänien', 45.69304, 25.53351, 1] // Airbus Helicopters Romania, Nr. 1A, Strada Aeroportului, Ghimbav 507075, Romania
+            ['Marignane, F', 43.43662, 5.232663, 4], // Airbus Helicopters, Aeroport International Marseille Provence, 13700 Marignane, France
+            ['Donauwörth, DE', 48.70899, 10.77385, 5], // Airbus Helicopters Deutschland GmbH, Industriestraße 4, 86609 Donauwörth, Germany
+            ['Kassel, DE', 51.40943, 9.396586, 3], // Eurocopter Deutschland GmbH, Flugplatzstraße 6, 34379 Calden, Germany, Permanently Closed
+            ['La Courneuve, F (Paris)', 48.92738, 2.398596, 2], // Airbus helicopters, 2-20 Avenue Marcel Cachin, 93120 La Courneuve, France
+            ['Brasov, Rumänien', 45.69304, 25.53351, 1] // Airbus Helicopters Romania, Nr. 1A, Strada Aeroportului, Ghimbav 507075, Romania
         ];
         
 
@@ -88,7 +91,7 @@
             addMyMarkers(map, AirbusHelicopters, redMarker);
             addMyMarkers(map, AgustaWestland, blueMarker);
             addMyMarkers(map, Pilatus, greenMarker);
-        } // End SetMarkers
+        } // End Sub SetMarkers
 
 
         function addMyMarkers(map, markers, flagImage)
@@ -113,8 +116,9 @@
                     title: thisMarker[0],
                     zIndex: thisMarker[3]
                 });
-            }
-        }
+            } // Next i 
+
+        } // End Sub addMyMarkers 
 
 
         function initMap()
@@ -126,15 +130,8 @@
                 center: myLatLng
             });
 
-            /*
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Hello World!'
-            });
-            */
             setMarkers(map);
-        }
+        } // End Sub initMap 
 
     </script>
 
