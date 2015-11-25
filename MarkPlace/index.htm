@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <title>Simple markers</title>
+    <style>
+        html, body
+        {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map
+        {
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="map"></div>
+
+
+    <script type="text/javascript">
+
+        var Pilatus = [
+  ['Stans, CH', 46.97413, 8.380424, 4] // Pilatus Flugzeugwerke AG, 6370 Stans, Switzerland
+        ];
+
+
+        var AgustaWestland = [
+  ['Varese', 45.71841, 8.694658, 4], // AgustaWestland S.p.A., Via Roma, 51B, Vergiate VA, Italy
+  ['Swidnik, Polen', 51.22803, 22.70015, 5] // PZL-Świdnik S.A. Wytwórnia sprzętu komunikacyjnego, aleja Lotników Polskich 1, Świdnik, Poland
+        ];
+
+
+        var AirbusHelicopters = [
+  ['Marignane, F', 43.43662, 5.232663, 4], // Airbus Helicopters, Aeroport International Marseille Provence, 13700 Marignane, France
+  ['Donauwörth, DE', 48.70899, 10.77385, 5], // Airbus Helicopters Deutschland GmbH, Industriestraße 4, 86609 Donauwörth, Germany
+  ['Kassel, DE', 51.40943, 9.396586, 3], // Eurocopter Deutschland GmbH, Flugplatzstraße 6, 34379 Calden, Germany, Permanently Closed
+  ['La Courneuve, F (Paris)', 48.92738, 2.398596, 2], // Airbus helicopters, 2-20 Avenue Marcel Cachin, 93120 La Courneuve, France
+  ['Brasov, Rumänien', 45.69304, 25.53351, 1] // Airbus Helicopters Romania, Nr. 1A, Strada Aeroportului, Ghimbav 507075, Romania
+        ];
+        
+
+        // https://developers.google.com/maps/documentation/javascript/examples/icon-complex
+        function setMarkers(map)
+        {
+            // Marker sizes are expressed as a Size of X,Y where the origin of the image
+            // (0,0) is located in the top left of the image.
+
+            // Origins, anchor positions and coordinates of the marker increase in the X
+            // direction to the right and in the Y direction down.
+            var blueMarker = {
+                url: 'images/1532_Flag_system_Blue.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+            var greenMarker = {
+                url: 'images/1532_Flag_system_Green.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+            var redMarker = {
+                url: 'images/1532_Flag_system_red.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+            // Adds markers to the map.
+            addMyMarkers(map, AirbusHelicopters, redMarker);
+            addMyMarkers(map, AgustaWestland, blueMarker);
+            addMyMarkers(map, Pilatus, greenMarker);
+        } // End SetMarkers
+
+
+        function addMyMarkers(map, markers, flagImage)
+        {
+            // Shapes define the clickable region of the icon. The type defines an HTML
+            // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+            // The final coordinate closes the poly by connecting to the first coordinate.
+            var shape = {
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                type: 'poly'
+            };
+
+
+            for (var i = 0; i < markers.length; i++)
+            {
+                var thisMarker = markers[i];
+                var marker = new google.maps.Marker({
+                    position: { lat: thisMarker[1], lng: thisMarker[2] },
+                    map: map,
+                    icon: flagImage,
+                    shape: shape,
+                    title: thisMarker[0],
+                    zIndex: thisMarker[3]
+                });
+            }
+        }
+
+
+        function initMap()
+        {
+            var myLatLng = { lat: 50.07807, lng: 14.42402 }; // Prag
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            /*
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
+            */
+            setMarkers(map);
+        }
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2pr4_PaHGO44OgUs97OERo8PY-OeieF8&signed_in=true&callback=initMap"></script>
+
+</body>
+</html>
