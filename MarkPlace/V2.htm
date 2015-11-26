@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <title>Simple markers</title>
+    <style>
+        html, body
+        {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map
+        {
+            height: 100%;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="map"></div>
+
+
+    <script type="text/javascript">
+
+        var Sully = [
+            ['Saint-Gobain / Sully', 47.76129, 2.369298, 4] // Saint-Gobain Sully, 16 Route d'Isdes, 45600 Sully-sur-Loire, France
+        ];
+
+
+        var PPG = [
+            ['PPG', 45.40730, 9.633759, 4] // Ampaspace S.R.L., Via Tre Venezie, 10,Casaletto Vaprio CR, Italy
+        ];
+
+
+        var Isoclima = [
+            ['Isoclima', 45.22243, 11.68393, 4] // Isoclima, Via Alessandro Volta, 14, 35042 Este PD, Italy
+        ];
+
+        
+        var GKN = [
+            ['GKN', 51.88265, -0.3799892, 4] // GKN Aerospace Transparency Systems, Percival Way, Luton, Bedford LU2 9PQ, United Kingdom
+        ];
+
+
+        var Nordam = [
+            ['Nordam', 53.40018, -2.367815, 4] // Nordam Transparency Ltd, 2 Tudor Rd, Altrincham WA14 5RZ, United Kingdom
+        ];
+
+
+        // https://developers.google.com/maps/documentation/javascript/examples/icon-complex
+        function setMarkers(map)
+        {
+            // Marker sizes are expressed as a Size of X,Y where the origin of the image
+            // (0,0) is located in the top left of the image.
+
+            // Origins, anchor positions and coordinates of the marker increase in the X
+            // direction to the right and in the Y direction down.
+            var blueMarker = {
+                url: 'images/1532_Flag_system_Blue.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+            var greenMarker = {
+                url: 'images/1532_Flag_system_Green.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+            
+            var purpleMarker = {
+                url: 'images/1532_Flag_system_Purple.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+            
+            var redMarker = {
+                url: 'images/1532_Flag_system_red.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+
+            var yellowMarker = {
+                url: 'images/1532_Flag_system_yellow.png',
+                // This marker is 20 pixels wide by 32 pixels high.
+                size: new google.maps.Size(48, 48),
+                // The origin for this image is (0, 0).
+                origin: new google.maps.Point(0, 0),
+                // The anchor for this image is the base of the flagpole at (0, 32).
+                anchor: new google.maps.Point(17, 46)
+            };
+
+            // Adds markers to the map.
+            addMyMarkers(map, Sully, blueMarker);
+            addMyMarkers(map, PPG, greenMarker);
+            addMyMarkers(map, Isoclima, purpleMarker);
+            addMyMarkers(map, GKN, redMarker);
+            addMyMarkers(map, Nordam, yellowMarker);
+        } // End Sub SetMarkers
+
+
+        function addMyMarkers(map, markers, flagImage)
+        {
+            // Shapes define the clickable region of the icon. The type defines an HTML
+            // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+            // The final coordinate closes the poly by connecting to the first coordinate.
+            var shape = {
+                coords: [1, 1, 1, 20, 18, 20, 18, 1],
+                type: 'poly'
+            };
+
+
+            for (var i = 0; i < markers.length; i++)
+            {
+                var thisMarker = markers[i];
+                var marker = new google.maps.Marker({
+                    position: { lat: thisMarker[1], lng: thisMarker[2] },
+                    map: map,
+                    icon: flagImage,
+                    shape: shape,
+                    title: thisMarker[0],
+                    zIndex: thisMarker[3]
+                });
+            } // Next i 
+
+        } // End Sub addMyMarkers 
+
+
+        function initMap()
+        {
+            var myLatLng = { lat: 50.07807, lng: 14.42402 }; // Prag
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            setMarkers(map);
+        } // End Sub initMap 
+
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2pr4_PaHGO44OgUs97OERo8PY-OeieF8&signed_in=true&callback=initMap"></script>
+
+</body>
+</html>

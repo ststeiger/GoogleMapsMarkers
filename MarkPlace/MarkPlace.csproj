@@ -62,6 +62,7 @@
     <Content Include="images\1532_Flag_system_red.png" />
     <Content Include="images\1532_Flag_system_yellow.png" />
     <Content Include="ApertureColors.htm" />
+    <Content Include="V2.htm" />
     <Content Include="index.htm" />
     <Content Include="Libs\Newtonsoft.Json.dll" />
     <Content Include="Scripts\jquery-1.7.1.intellisense.js" />
