@@ -105,10 +105,14 @@
         // if (Http.URL.contains("uid")) uid = Http.URL.Parameters["uid"];
         //var postData = { "uid": uid };
 
+
+
+
         new Http.Post("ajax/GetData.ashx") //, postData)
             .success(DisplayAjaxTable)
             .send()
         ;
+
     </script>
 
 </body>

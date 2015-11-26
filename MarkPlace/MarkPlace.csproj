@@ -56,6 +56,7 @@
     <Content Include="ajax\ApertureColors.css" />
     <Content Include="ajax\EasyAjax.js" />
     <Content Include="ajax\EasyAjax.ts.js" />
+    <Content Include="GeoCoding.htm" />
     <Content Include="images\1532_Flag_system_Blue.png" />
     <Content Include="images\1532_Flag_system_Green.png" />
     <Content Include="images\1532_Flag_system_Purple.png" />
