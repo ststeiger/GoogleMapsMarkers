@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <title>Simple markers</title>
+    <style>
+        html, body, form
+        {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        td.color
+        {
+            display: table-cell;
+            width: 1cm;
+            height: 1cm;
+            border: 1px solid #F0F0F0;
+        }
+
+        td.caption
+        {
+            width: 3cm;
+            padding-left: 0.25cm;
+        }
+
+    </style>
+
+    <link rel="stylesheet" type="text/css" media="all" href="ajax/ApertureColors.css?no_cache=v1" />
+    <script type="text/javascript" src="ajax/EasyAjax.js"></script>
+</head>
+<body>
+    <a href="ajax/GetData.ashx" target="_blank">Colors from DB</a>
+
+    <div id="colors"></div>
+
+    <script type="text/javascript">
+
+        function DisplayTableSimple()
+        {
+            var str = [];
+            str.push("<table>");
+
+            for (var i = 0; i < 100; ++i)
+            {
+                str.push('<tr><td class="color Color' + i + '"></td><td class="caption">Color ' + i + '</td></tr>');
+            }
+
+            str.push("</table>");
+            document.getElementById("colors").innerHTML = str.join("");
+        }
+
+        // DisplayTableSimple();
+
+        
+
+
+
+        function DisplayAjaxTable(r)
+        {
+            // console.log("Entering onSuccess");
+
+            r = JSON.parse(r);
+            if (r.hasError)
+            {
+                alert(r.error.message);
+                return;
+            }
+
+            // console.log("Processing in onSuccess");
+
+
+            str = [];
+            str.push("<table>");
+
+            var j = Math.ceil(r.length / 5.0);
+            
+            for (var i = 0; i < j; ++i)
+            {
+                var k = i + 1 * j;
+                var l = i + 2 * j;
+                var m = i + 3 * j;
+                var n = i + 4 * j;
+                
+                str.push('<tr>' + 
+                    '<td class="color" style="background-color: #' + r[i].COL_Hex + '"></td><td class="caption">Color ' + i + '</td>' +
+                    '<td class="color" style="background-color: #' + r[k].COL_Hex + '"></td><td class="caption">Color ' + k + '</td>' +
+                    '<td class="color" style="background-color: #' + r[l].COL_Hex + '"></td><td class="caption">Color ' + l + '</td>' +
+                    '<td class="color" style="background-color: #' + r[m].COL_Hex + '"></td><td class="caption">Color ' + m + '</td>' +
+                    '<td class="color" style="background-color: #' + r[n].COL_Hex + '"></td><td class="caption">Color ' + n + '</td>' +
+                    '</tr>');
+            }
+
+            str.push("</table>");
+
+            document.getElementById("colors").innerHTML = str.join("");
+        } // End Function onSuccess
+
+
+        // var uid = null;
+        // if (Http.URL.contains("uid")) uid = Http.URL.Parameters["uid"];
+        //var postData = { "uid": uid };
+
+        new Http.Post("ajax/GetData.ashx") //, postData)
+            .success(DisplayAjaxTable)
+            .send()
+        ;
+    </script>
+
+</body>
+</html>
